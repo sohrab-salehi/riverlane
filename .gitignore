@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#python cache
+/backend/__pycache__
+
+#python virtual environment
+/backend/venv
