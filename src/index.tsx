@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "antd/dist/antd.css";
-
+import "antd/dist/antd.min.css";
 import reportWebVitals from "./reportWebVitals";
 import MainLayout from "./MainLayout";
 import ErrorPage from "./ErrorPage";
-import Circuit from "./Circuit";
+import Circuits from "./Circuits";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +15,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "circuit/:circuitId",
-                element: <Circuit />,
+                element: <Circuits />,
             },
         ],
     },

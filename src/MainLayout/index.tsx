@@ -1,11 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { PartitionOutlined } from "@ant-design/icons";
-import { Button, Breadcrumb, Input, InputNumber, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu } from "antd";
 
 import "./MainLayout.scss";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 function MainLayout(): JSX.Element {
     return (
@@ -32,40 +31,7 @@ function MainLayout(): JSX.Element {
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
                     <Breadcrumb.Item>Circuits</Breadcrumb.Item>
                 </Breadcrumb>
-                <Layout
-                    className="site-layout-background"
-                    style={{ padding: "24px 0" }}
-                >
-                    <Sider className="site-layout-background" width={400}>
-                        <Input.Group compact>
-                            <InputNumber
-                                addonBefore="Number of Gates:"
-                                type="number"
-                                min={1}
-                                style={{ width: "calc(100% - 61px)" }}
-                                size="large"
-                            />
-                            <Button type="primary" size="large">
-                                Add
-                            </Button>
-                        </Input.Group>
-                        <Menu
-                            mode="inline"
-                            defaultSelectedKeys={["1"]}
-                            defaultOpenKeys={["sub1"]}
-                            items={[
-                                {
-                                    key: "1",
-                                    icon: <PartitionOutlined />,
-                                    label: "Circuit 1",
-                                },
-                            ]}
-                        />
-                    </Sider>
-                    <Content style={{ padding: "0 24px", minHeight: 280 }}>
-                        <Outlet />
-                    </Content>
-                </Layout>
+                <Outlet />
             </Content>
             <Footer style={{ textAlign: "center" }}>
                 Riverlane ©2022 Created by Sohrab
