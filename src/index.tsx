@@ -1,13 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "antd/dist/antd.css";
 
 import reportWebVitals from "./reportWebVitals";
+import MainLayout from "./MainLayout";
+import ErrorPage from "./ErrorPage";
+import Circuit from "./Circuit";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>Hello world!</div>,
+        element: <MainLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "circuit/:circuitId",
+                element: <Circuit />,
+            },
+        ],
     },
 ]);
 
