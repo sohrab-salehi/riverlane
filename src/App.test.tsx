@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 
-import MainLayout from "./MainLayout";
+import Circuits from "./Circuits";
 
-describe("<MainLayout />", () => {
+describe("<Circuits />", () => {
     test("Add button renders without issue", async () => {
-        render(<MainLayout />);
+        render(<Circuits />);
         const addButton = screen.getByRole("button", {
             name: /Add/i,
         });
@@ -14,7 +14,7 @@ describe("<MainLayout />", () => {
         });
     });
     test("Gate number input renders without issue", async () => {
-        render(<MainLayout />);
+        render(<Circuits />);
         const gateNumberInput = screen.getByRole("spinbutton");
         await waitFor(() => {
             expect(gateNumberInput).toBeInTheDocument();

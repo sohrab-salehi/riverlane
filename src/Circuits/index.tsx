@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Input, InputNumber, Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { Button, Input, InputNumber, Layout, Menu, message } from "antd";
 import { PartitionOutlined } from "@ant-design/icons";
 
 import createCircuit from "../api/circuit";
@@ -8,8 +8,13 @@ import CircuitPlot from "./CircuitPlot";
 const { Content, Sider } = Layout;
 
 function Circuits(): JSX.Element {
+    const [gateNumber, setGateNumber] = useState<number | null>(null);
     const handleCreateCircuit: () => void = () => {
-        createCircuit(3).then((response) => console.log(response));
+        if (gateNumber === null) {
+            message.error("Please insert valid number!");
+        } else {
+            createCircuit(gateNumber).then((response) => console.log(response));
+        }
     };
     return (
         <Layout
@@ -24,6 +29,8 @@ function Circuits(): JSX.Element {
                         min={1}
                         style={{ width: "calc(100% - 61px)" }}
                         size="large"
+                        value={gateNumber}
+                        onChange={(value) => setGateNumber(value)}
                     />
                     <Button
                         type="primary"
