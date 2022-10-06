@@ -12,20 +12,28 @@ const { Content, Sider } = Layout;
 function Circuits(): JSX.Element {
     const [gateNumber, setGateNumber] = useState<number | null>(null);
     const [circuitsList, setCircuitsList] = useState<iCircuit[]>([]);
+    const [selectedCircuit, setSelectedCircuit] = useState<string>("1");
+    const [createCircuitLoading, setCreateCircuitLoading] =
+        useState<boolean>(false);
 
     const handleCreateCircuit: () => void = () => {
-        if (gateNumber === null) {
-            message.error("Please insert valid number!");
-        } else {
-            createCircuit(gateNumber).then((response) => {
+        setCreateCircuitLoading(true);
+        createCircuit(gateNumber).then(
+            (response) => {
                 const newCircuit = {
                     index: circuitsList.length + 1,
                     circuit: response.data.circuit,
                 };
                 const newList = circuitsList.concat(newCircuit);
                 setCircuitsList(newList);
-            });
-        }
+                setSelectedCircuit(String(newCircuit.index));
+                setCreateCircuitLoading(false);
+            },
+            (error) => {
+                setCreateCircuitLoading(false);
+                message.error(error.response.data.error_message);
+            }
+        );
     };
 
     const convertToMenuItem: () => MenuItemType[] = () => {
@@ -49,7 +57,6 @@ function Circuits(): JSX.Element {
                     <InputNumber
                         addonBefore="Number of Gates:"
                         type="number"
-                        min={1}
                         style={{ width: "calc(100% - 61px)" }}
                         size="large"
                         value={gateNumber}
@@ -59,19 +66,25 @@ function Circuits(): JSX.Element {
                         type="primary"
                         size="large"
                         onClick={handleCreateCircuit}
+                        disabled={gateNumber === null}
+                        loading={createCircuitLoading}
                     >
                         Add
                     </Button>
                 </Input.Group>
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={["1"]}
-                    defaultOpenKeys={["sub1"]}
+                    selectedKeys={[selectedCircuit]}
                     items={convertToMenuItem()}
+                    onSelect={({ key }) => setSelectedCircuit(key)}
                 />
             </Sider>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
-                <CircuitPlot />
+                {circuitsList.length !== 0 ? (
+                    <CircuitPlot
+                        circuitData={circuitsList[Number(selectedCircuit) - 1]}
+                    />
+                ) : null}
             </Content>
         </Layout>
     );
