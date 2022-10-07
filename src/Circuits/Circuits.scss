@@ -3,4 +3,16 @@
     .ant-input-group-compact {
         padding: 0 16px 20px 16px;
     }
+    // Change steper style
+    .ant-steps-item-container {
+        height: 70px;
+        .ant-steps-item-tail::after {
+            width: 3px;
+            background-color: #ffe58f;
+        }
+        .ant-steps-item-icon {
+            background: #389e0d;
+            border-radius: 5px;
+        }
+    }
 }

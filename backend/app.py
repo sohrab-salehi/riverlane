@@ -14,8 +14,8 @@ class Circuit(Resource):
         gateNumber = int(data["gateNumber"])
         if(gateNumber < 1):
             abort(400, error_message='Invalid value for gate number')
-        elif(gateNumber > 8):
-            abort(400, error_message='Gate number value should be lower than 9')
+        elif(gateNumber > 20):
+            abort(400, error_message='Gate number value should be lower than 20')
         else:
             circuit = get_circuit(gateNumber)
             responseData = {'circuit': circuit}
