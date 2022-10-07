@@ -20,7 +20,11 @@ function Home(): JSX.Element {
                         quantum circuit as much as required and switch between
                         them to see circuit in detail. The circuits list is
                         <Text type="danger"> temporary</Text> and will refresh
-                        after every page reload.
+                        after every page reload. To serve appropriate data for
+                        web application, I used
+                        <Text type="success"> flask_restful</Text>. I do not
+                        have any experience in using Flask but I found it a good
+                        choice for developing minimal REST API.
                     </Paragraph>
                 </Typography>
                 <Collapse>
