@@ -1,32 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from "./App";
 import "antd/dist/antd.min.css";
 import reportWebVitals from "./reportWebVitals";
-import MainLayout from "./MainLayout";
-import ErrorPage from "./ErrorPage";
-import Circuits from "./Circuits";
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: "circuit/:circuitId",
-                element: <Circuits />,
-            },
-        ],
-    },
-]);
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <App />
     </React.StrictMode>
 );
 

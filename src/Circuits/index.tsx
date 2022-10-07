@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, Input, InputNumber, Layout, Menu, message } from "antd";
+import { Alert, Button, Input, InputNumber, Layout, Menu, message } from "antd";
 import { PartitionOutlined } from "@ant-design/icons";
 
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
 import createCircuit from "../api/circuit";
 import CircuitPlot from "./CircuitPlot";
 import { iCircuit } from "../types/iCircuit";
+import "./Circuits.scss";
 
 const { Content, Sider } = Layout;
 
@@ -48,11 +49,8 @@ function Circuits(): JSX.Element {
     };
 
     return (
-        <Layout
-            className="site-layout-background"
-            style={{ padding: "24px 0" }}
-        >
-            <Sider className="site-layout-background" width={400}>
+        <Layout id="main-layout" style={{ padding: "24px 0" }}>
+            <Sider theme="light" width={400}>
                 <Input.Group compact>
                     <InputNumber
                         addonBefore="Number of Gates:"
@@ -84,7 +82,19 @@ function Circuits(): JSX.Element {
                     <CircuitPlot
                         circuitData={circuitsList[Number(selectedCircuit) - 1]}
                     />
-                ) : null}
+                ) : (
+                    <Alert
+                        message="Warning"
+                        description={
+                            "Your circuit list is empty. Please use " +
+                            "the gate number input and add button to" +
+                            " generate new circuit."
+                        }
+                        type="warning"
+                        showIcon
+                        closable
+                    />
+                )}
             </Content>
         </Layout>
     );
