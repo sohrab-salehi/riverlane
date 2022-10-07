@@ -2,8 +2,6 @@ import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 
-import "./MainLayout.scss";
-
 const { Header, Content, Footer } = Layout;
 
 function MainLayout(): JSX.Element {
@@ -33,7 +31,7 @@ function MainLayout(): JSX.Element {
     ].concat(extraBreadcrumbItems);
 
     return (
-        <Layout id="main-layout">
+        <Layout style={{ minHeight: "100vh" }}>
             <Header className="header">
                 <Menu
                     theme="dark"

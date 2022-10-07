@@ -9,9 +9,13 @@ function CircuitPlot(props: { circuitData: iCircuit }): JSX.Element {
     const { circuitData } = props;
     return (
         <Card>
-            <Steps current={circuitData.circuit.length}>
+            <Steps>
                 {circuitData.circuit.map((gate, index) => (
-                    <Step key={`${gate}-${index * 2}`} title={gate} />
+                    <Step
+                        status="process"
+                        key={`${gate}-${index * 2}`}
+                        title={gate}
+                    />
                 ))}
             </Steps>
         </Card>
