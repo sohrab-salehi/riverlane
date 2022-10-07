@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, InputNumber, Layout, Menu, message } from "antd";
+import { Alert, Button, Input, InputNumber, Layout, Menu, message } from "antd";
 import { PartitionOutlined } from "@ant-design/icons";
 
 import { MenuItemType } from "antd/lib/menu/hooks/useItems";
@@ -84,7 +84,19 @@ function Circuits(): JSX.Element {
                     <CircuitPlot
                         circuitData={circuitsList[Number(selectedCircuit) - 1]}
                     />
-                ) : null}
+                ) : (
+                    <Alert
+                        message="Warning"
+                        description={
+                            "Your circuit list is empty. Please use " +
+                            "the gate number input and add button to" +
+                            " generate new circuit."
+                        }
+                        type="warning"
+                        showIcon
+                        closable
+                    />
+                )}
             </Content>
         </Layout>
     );

@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import MainLayout from "./MainLayout";
 import ErrorPage from "./ErrorPage";
 import Circuits from "./Circuits";
+import Home from "./Home";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "circuit/:circuitId",
+                element: <Home />,
+                index: true,
+            },
+            {
+                path: "circuits",
                 element: <Circuits />,
             },
         ],
